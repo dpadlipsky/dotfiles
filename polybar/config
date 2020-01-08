@@ -1,0 +1,463 @@
+[colors]
+background = #0d1825
+foreground = #9ab9f3
+linecolor = #fba922
+bordercolor = #333
+accent = #e60053
+
+[settings]
+screenchange-reload = true
+;throttle-output-for = 10
+;throttle-output = 5
+;throttle-input-for = 40
+
+;compositing-background = over
+;compositing-background = screen
+;compositing-foreground = xor
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/left]
+monitor = eDP-1
+
+radius = 0
+
+wm-restack = i3
+override-redirect = true
+
+fixed-center = true
+; tray-position= right
+; tray-background = ${colors.bg}
+
+; border-size = 10
+; border-bottom-size = 0
+; border-color = $00000000
+
+width = 3802
+height = 55
+
+offset-x = 19
+offset-y = 19
+
+enable-ipc = true
+
+padding-left = 0
+padding-right = 2
+
+module-margin-right = 0
+module-margin-left = 5
+
+background = #30000000
+foreground = ${colors.foreground}
+
+;background-0 = #333
+;background-1 = #222
+;background-2 = ${self.background-1}
+;background-3 = ${self.background-1}
+;background-4 = ${self.background-1}
+;background-5 = ${self.background-1}
+;background-6 = ${self.background-1}
+;background-7 = #111
+
+line-color = ${colors.linecolor}
+overline-size = 4
+overline-color = ${colors.background}
+underline-size = 4
+underline-color = ${colors.accent}
+
+font-0 = inconsolata:style=Bold:pixelsize=20;2
+font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=20;3"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=20;2"
+font-3 = "Font Awesome 5 Brands:pixelsize=28;5"
+
+
+modules-left = i3
+modules-center = date
+;modules-center = xwindow
+modules-right = network battery
+
+tray-position = right
+tray-padding = 4
+tray-maxsize = 16
+tray-transparent = true
+;tray-detached = true
+;tray-offset-x = 50
+
+;dim-value = 0.2
+
+;double-click-left = notify-send -u low doubleclick
+;double-click-right = notify-send -u low doubleclick2
+
+[bar/right]
+monitor = DP-1
+
+radius = 0
+
+wm-restack = i3
+override-redirect = true
+
+fixed-center = true
+; tray-position= right
+; tray-background = ${colors.bg}
+
+; border-size = 10
+; border-bottom-size = 0
+; border-color = $00000000
+
+width = 3802
+height = 55
+
+offset-x = 19
+offset-y = 19
+
+enable-ipc = true
+
+padding-left = 0
+padding-right = 2
+
+module-margin-right = 0
+module-margin-left = 5
+
+background = #30000000
+foreground = ${colors.foreground}
+
+;background-0 = #333
+;background-1 = #222
+;background-2 = ${self.background-1}
+;background-3 = ${self.background-1}
+;background-4 = ${self.background-1}
+;background-5 = ${self.background-1}
+;background-6 = ${self.background-1}
+;background-7 = #111
+
+line-color = ${colors.linecolor}
+overline-size = 4
+overline-color = ${colors.background}
+underline-size = 4
+underline-color = ${colors.accent}
+
+font-0 = "Droid Sans Mono":style=Bold:pixelsize=20;2
+font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=20;3"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=20;2"
+font-3 = "Font Awesome 5 Brands:pixelsize=28;5"
+
+
+modules-left = i3
+modules-center = date
+;modules-center = xwindow
+modules-right = network battery
+
+tray-position = right
+tray-padding = 4
+tray-maxsize = 16
+tray-transparent = true
+;tray-detached = true
+;tray-offset-x = 50
+
+;dim-value = 0.2
+
+;double-click-left = notify-send -u low doubleclick
+;double-click-right = notify-send -u low doubleclick2
+
+[module/fs-root]
+type = internal/fs
+mount-0 = /
+label-mounted = %{F#e60053}%percentage_used%%%{F-} used of %mountpoint%
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label =  %percentage%%
+format-prefix-foreground = #666
+
+[module/memory]
+type = internal/memory
+interval = 2
+label =  %percentage_used%%
+format-prefix-foreground = #666
+
+[module/network]
+type = custom/script
+interval = 2.0
+format =   <label>
+exec = "iwgetid -r"
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+interval = 1.0
+
+date = %b %d,
+
+; Optional time format
+time = %I:%M %p
+
+label = %date% %time%
+format =   <label>
+
+
+[module/backlight]
+type = internal/backlight
+format =  <label>
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+format-volume = <ramp-volume> <label-volume>
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+label-muted =  Muted
+
+; Interval for volume increase/decrease (in percent points) (unreleased)
+; Default: 5
+interval = 5
+
+[module/battery]
+type = internal/battery
+full-at = 100
+time-format = %H:%M
+battery = BAT0
+adapter = AC
+format-charging =      <label-charging>
+format-discharging = <ramp-capacity>    <label-discharging>
+label-full =     100%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/mpd]
+type = internal/mpd
+
+;format-online = <label-time>  <bar-progress>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
+format-online = <label-time> %{F#88}|%{F-} <label-song> <icon-prev><icon-stop><toggle><icon-next> <icon-repeat><icon-random>
+format-online-spacing = 0
+format-online-background = #ee333333
+format-online-underline = #cc333333
+format-online-padding = 3
+
+format-offline = <label-offline>
+format-offline-foreground = #777
+
+label-offline = mpd is off
+
+label-song-maxlen = 45
+label-song-ellipsis = true
+
+label-time-foreground = #777
+
+toggle-on-foreground = ${colors.accent}
+toggle-off-foreground = #777
+
+;bar-progress-width = 10
+;bar-progress-indicator-foreground = #bb
+;bar-progress-fill = ─
+;bar-progress-fill-foreground = #bb
+;bar-progress-fill-font = 3
+;bar-progress-empty = ─
+;bar-progress-empty-foreground = #44
+;bar-progress-empty-font = 3
+
+[module/power-menu]
+type = custom/menu
+
+label-separator = /
+label-separator-margin = 1
+
+menu-0-0 = Terminate WM
+menu-0-0-foreground = ${colors.accent}
+menu-0-0-exec = bspc quit -1
+menu-0-1 = Reboot
+menu-0-1-foreground = ${colors.accent}
+menu-0-1-exec = menu-open-1
+menu-0-2 = Power off
+menu-0-2-foreground = ${colors.accent}
+menu-0-2-exec = menu-open-2
+menu-0-3 = Lock
+menu-0-3-foreground = ${colors.accent}
+menu-0-3-exec = lockscreen
+
+menu-1-0 = Cancel
+menu-1-0-foreground = ${colors.accent}
+menu-1-0-exec = menu-open-0
+menu-1-1 = Reboot
+menu-1-1-foreground = ${colors.accent}
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = Power off
+menu-2-0-foreground = ${colors.accent}
+menu-2-0-exec = sudo poweroff
+menu-2-1 = Cancel
+menu-2-1-foreground = ${colors.accent}
+menu-2-1-exec = menu-open-0
+
+[module/app-menu]
+type = custom/menu
+
+menu-0-0 = Vimperator
+menu-0-0-exec = web
+menu-0-1 = Termite
+menu-0-1-exec = termite
+menu-0-2 = Pcmanfm
+menu-0-2-exec = pcmanfm
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+blacklist-0 = num lock
+
+format-prefix-foreground = #666
+
+label-layout = %layout%
+
+label-indicator-padding = 2
+label-indicator-background = ${colors.accent}
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+label-maxlen = 75
+
+[module/counter]
+type = internal/counter
+format = <counter>
+interval = 0.1
+
+; vim:ft=dosini
+
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = false
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 0;0
+
+
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 4
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %icon%
+label-focused-foreground = ${colors.foreground}
+;label-focused-background = #444444
+label-focused-underline = ${colors.foreground}
+label-focused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %icon%
+label-unfocused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %icon%
+label-visible-underline = #555555
+label-visible-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %icon%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 4
+
+; Separator in between workspaces
+;label-separator =
+;label-separator-padding = 0
+;label-separator-foreground = $(colors.foreground)

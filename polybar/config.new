@@ -1,0 +1,157 @@
+[bar/top]
+width = 100%
+height = 60 
+offset-x = 0 
+offset-y = 0 
+;override-redirect = true
+;radius = 6
+
+background = #8a000000
+foreground = #eee
+
+underline-size = 2
+underline-color = #eee
+
+spacing = 1
+padding-left = 0
+padding-right = 0
+module-margin-left = 0 
+module-margin-right = 0
+
+font-0 = Droid Sans:pixelsize=26;1
+font-1 = Font Awesome 5 Free:style=Regular:pixelsize=22;1
+font-2 = Font Awesome 5 Free:style=Solid:pixelsize=20;1
+font-3 = Font Awesome 5 Brands:pixelsize=20;1
+
+modules-left = i3
+modules-center = 
+modules-right = network date powermenu
+
+
+; MODULES
+
+[module/i3]
+type = internal/i3
+pin-workspaces = false
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = true
+fuzzy-match = true
+
+label-focused-underline = #eee
+label-focused-padding = 2
+label-unfocused-padding = 2
+label-visible-padding = 2
+label-urgent-underline = #d26939
+label-urgent-padding = 2
+
+
+[module/music]
+type = custom/script
+interval = 0.1
+format-background = #a9000000
+format-padding = 3
+label = %output:0:45:...%
+exec = ~/.config/dotfiles/scripts/mpris.sh
+
+[module/network]
+type = custom/script
+interval = 2.0
+format =   <label>
+format-padding = 3
+format-background = #a9000000
+exec = "iwgetid -r"
+
+
+[module/pkg]
+type = custom/script
+interval = 120
+format =   <label>
+format-padding = 3
+label = "%output:0:30%"
+exec = /home/dat/.config/dotfiles/scripts/pkg.sh
+exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+
+
+[module/temp]
+type = custom/script
+interval = 2
+format = <label>
+format-padding = 3
+exec = /home/dat/.config/dotfiles/scripts/temperature.sh
+
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+interval = 1.0
+
+date = %b %d, 
+
+; Optional time format
+time = %I:%M %p
+
+label = %date% %time%
+format =   <label>
+format-padding = 3
+format-background = #a9000000
+
+
+[module/padding]
+type = custom/text
+content = 	 
+content-foreground = #00000000
+content-background = #55000000
+
+
+[module/powermenu]
+type = custom/menu
+
+label-open =   
+label-close = cancel
+label-open-padding = 4 
+label-close-padding = 3 
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-0-padding = 3
+menu-0-1-padding = 3
+
+menu-1-0 = reboot?  
+menu-1-0-exec = systemctl reboot
+menu-1-0-padding = 3
+
+menu-2-0 = power off?  
+menu-2-0-exec = systemctl poweroff
+menu-2-0-padding = 3
+
+
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP1
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 5
+format-padding = 3
+format-background = #a9000000

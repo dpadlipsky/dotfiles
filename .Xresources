@@ -1,61 +1,40 @@
-#define t_bg_floor     #010000
-#define t_bg_dip       #2B2B28
-#define t_background   #32312E
-#define t_bg_bump      #3F3E3B
-#define t_fg_comment   #7F7F83
-#define t_foreground   #A6A7AA
-#define t_fg_highlight #6699ff
-#define t_fg_ceiling   #FEFFFF
+! special
+*.foreground:   #a6a7aa
+*.background:   #32312e
+*.cursorColor:  #a6a7aa
 
-URxvt.background: t_background
-URxvt.foreground: t_foreground
+! black
+*.color0:       #3f3e3b
+*.color8:       #7f7f83
 
-URxvt.colorBD: t_fg_highlight
-URxvt.colorIT: t_fg_highlight
-URxvt.colorUL: t_fg_highlight
+! red
+*.color1:       #b36b65
+*.color9:       #efa29b
 
-URxvt.cursorColor: #8080ff
+! green
+*.color2:       #4f8c61
+*.color10:      #86c596
 
-! BLK
-URxvt.color0: t_bg_bump
-URxvt.color8: t_fg_comment
+! yellow
+*.color3:       #8d7e45
+*.color11:      #c7b679
 
-! WHT
-URxvt.color7: t_fg_highlight
-URxvt.color15: t_fg_ceiling
+! blue
+*.color4:       #6181b8
+*.color12:      #9ab9f3
 
-! RED
-URxvt.color1: #B36B65
-URxvt.color9: #EFA29B
+! magenta
+*.color5:       #a46d9d
+*.color13:      #dfa4d7
 
-! YEL
-URxvt.color3: #8D7E45
-URxvt.color11: #C7B679
+! cyan
+*.color6:       #0e8e9a
+*.color14:      #5ec7d4
 
-! GRN
-URxvt.color2: #4F8C61
-URxvt.color10: #86C596
+! white
+*.color7:       #6699ff
+*.color15:      #feffff
 
-! CYN
-URxvt.color6: #0E8E9A
-URxvt.color14: #5EC7D4
-
-! BLU
-URxvt.color4: #6181B8
-URxvt.color12: #9AB9F3
-
-! MAG
-URxvt.color5: #A46D9D
-URxvt.color13: #DFA4D7
-
-URxvt.color16: t_bg_floor
-URxvt.color17: t_bg_dip
-URxvt.color18: t_background
-URxvt.color19: t_bg_bump
-URxvt.color20: t_fg_comment
-URxvt.color21: t_foreground
-URxvt.color22: t_fg_highlight
-URxvt.color23: t_fg_ceiling
 
 URxvt.color24: #DE8FA8
 URxvt.color25: #DE8FA7
@@ -298,12 +277,14 @@ URxvt.transparent: true
 URxvt.shading: 20
 
 URxvt.font: xft:Monospace:pixelsize=28
-URxvt.letterSpace: -1
-
-URxvt.perl-ext-common: resize-font
+URxvt.letterSpace: 0
+URxvt.internalBorder: 20
 
 *antialias:  false
 *autohint:   false
 
 Xft.dpi: 192
 Xft.rgba: rgb
+
+rofi.dpi: 192
+rofi.show-icons: true
