@@ -1,3 +1,3 @@
 # Dotfiles
 
-Updated: 1/8/2020
+Updated: 2/18/2020
